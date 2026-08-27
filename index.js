@@ -1,26 +1,25 @@
-function getComputerChoice() {
-    //get math random (result 0-8)
-    let math = Math.floor(Math.random() * 10) - 1;
-
-    //if math equals 0,1,2 then result equals rock
-    //else if math equals 3,4,5 then result equals paper
-    //else if math equals 6,7,8 then result equals scissors
-    if (math <= 2) {
-        return ("Rock");
-    } else if (math >= 3 && math <= 5) {
-        return ("Paper");
-    } else if (math >= 6) {
-        return ("Scissors");
-    }
-}
-
-function getHumanChoice() {
-    let userInput = prompt("Rock-Paper-Scissors?", "");
-    let result = userInput.charAt(0).toUpperCase() + userInput.slice(1).toLowerCase();
-    return (result);
-}
-
 function playGame() {
+    function getComputerChoice() {
+        //get math random (result 0-8)
+        let math = Math.floor(Math.random() * 10) - 1;
+
+        //if math equals 0,1,2 then result equals rock
+        //else if math equals 3,4,5 then result equals paper
+        //else if math equals 6,7,8 then result equals scissors
+        if (math <= 2) {
+            return ("Rock");
+        } else if (math >= 3 && math <= 5) {
+            return ("Paper");
+        } else if (math >= 6) {
+            return ("Scissors");
+        }
+    }
+
+    function getHumanChoice() {
+        let userInput = prompt("Rock-Paper-Scissors?", "");
+        let result = userInput.charAt(0).toUpperCase() + userInput.slice(1).toLowerCase();
+        return (result);
+    }
     //get variable computerChoice and humanChoice
     //if Rock vs Paper equals PAPER WINS
     //else if Rock vs Scissors equals ROCK WINS 
@@ -89,5 +88,3 @@ function playGame() {
     console.log("COMPUTER HIGHSCORE = " + computerScore);
     console.log("HUMAN HIGHSCORE = " + humanScore);
 }
-
-playGame();
