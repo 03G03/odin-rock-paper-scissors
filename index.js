@@ -1,5 +1,3 @@
-console.log("Hello World!")
-
 function getComputerChoice() {
     //get math random (result 0-8)
     let math = Math.floor(Math.random() * 10) - 1;
@@ -8,13 +6,10 @@ function getComputerChoice() {
     //else if math equals 3,4,5 then result equals paper
     //else if math equals 6,7,8 then result equals scissors
     if (math <= 2) {
-        console.log("computer choice is ROCK");
         return ("Rock");
     } else if (math >= 3 && math <= 5) {
-        console.log("computer choice is PAPER");
         return ("Paper");
     } else if (math >= 6) {
-        console.log("computer choice is SCISSORS");
         return ("Scissors");
     }
 }
@@ -22,7 +17,6 @@ function getComputerChoice() {
 function getHumanChoice() {
     let userInput = prompt("Rock-Paper-Scissors?", "");
     let result = userInput.charAt(0).toUpperCase() + userInput.slice(1).toLowerCase();
-    console.log("human choice is " + result);
     return (result);
 }
 
@@ -36,16 +30,12 @@ function playGame() {
         let wins;
         if ((computerSelection === "Rock" || humanSelection === "Rock") && (computerSelection === "Paper" || humanSelection === "Paper")) {
             wins = "Paper"
-            console.log("playRound is running PAPER");
         } else if ((computerSelection === "Rock" || humanSelection === "Rock") && (computerSelection === "Scissors" || humanSelection === "Scissors")) {
             wins = "Rock"
-            console.log("playRound is running ROCK");
         } else if ((computerSelection === "Paper" || humanSelection === "Paper") && (computerSelection === "Paper" || humanSelection === "Paper")) {
             wins = "Scissors"
-            console.log("playRound is running SCISSORS");
         } else {
             wins = "draw";
-            console.log("playRound is running DRAW");
         }
 
         console.log("Computer choose = " + computerSelection);
@@ -104,15 +94,6 @@ function playGame() {
     playRound(computerSelection, humanSelection);
 
     console.log('');
-    console.log("it's running the third");
-
-    console.log('---------------------------');
-    computerSelection = getComputerChoice();
-    humanSelection = getHumanChoice();
-    console.log('');
-    playRound(computerSelection, humanSelection);
-
-    console.log('');
     console.log("it's running the forth");
 
     console.log('---------------------------');
@@ -125,6 +106,21 @@ function playGame() {
     console.log("it's running the fifth");
 
     console.log('---------------------------');
+
+    if (computerScore > humanScore) {
+        //computer wins
+        console.log("YOU LOSE! COMPUTER WINS!");
+    } else if (computerScore < humanScore) {
+        //human wins
+        console.log("CONGRATULATION,YOU WIN! COMPUTER LOSE!");
+    } else {
+        //draw
+        console.log("NO ONE WIN! IT'S DRAW!");
+    }
+
+    console.log("");
+    console.log("COMPUTER HIGHSCORE = " + computerScore);
+    console.log("HUMAN HIGHSCORE = " + humanScore);
 }
 
 playGame();
