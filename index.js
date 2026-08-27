@@ -64,48 +64,15 @@ function playGame() {
     let computerSelection = getComputerChoice();
     let humanSelection = getHumanChoice();
 
-    console.log('');
-    playRound(computerSelection, humanSelection);
-
-    console.log("it's running the first");
-
-    console.log('---------------------------');
-    computerSelection = getComputerChoice();
-    humanSelection = getHumanChoice();
-    console.log('');
-    playRound(computerSelection, humanSelection);
-
-    console.log('');
-    console.log("it's running the second");
-
-    console.log('---------------------------');
-    computerSelection = getComputerChoice();
-    humanSelection = getHumanChoice();
-    console.log('');
-    playRound(computerSelection, humanSelection);
-
-    console.log('');
-    console.log("it's running the third");
-
-    console.log('---------------------------');
-    computerSelection = getComputerChoice();
-    humanSelection = getHumanChoice();
-    console.log('');
-    playRound(computerSelection, humanSelection);
-
-    console.log('');
-    console.log("it's running the forth");
-
-    console.log('---------------------------');
-    computerSelection = getComputerChoice();
-    humanSelection = getHumanChoice();
-    console.log('');
-    playRound(computerSelection, humanSelection);
-
-    console.log('');
-    console.log("it's running the fifth");
-
-    console.log('---------------------------');
+    for (let i = 0; i < 5; i++) {
+        console.log("ATTEMPS = " + (i + 1));
+        computerSelection = getComputerChoice();
+        humanSelection = getHumanChoice();
+        console.log('');
+        playRound(computerSelection, humanSelection);
+        console.log('');
+        console.log("⋆｡‧˚ʚ ୨ৎ ɞ˚‧｡⋆⋆｡‧˚ʚ ୨ৎ ɞ˚‧｡⋆⋆｡‧˚ʚ ୨ৎ ɞ˚‧｡⋆")
+    }
 
     if (computerScore > humanScore) {
         //computer wins
