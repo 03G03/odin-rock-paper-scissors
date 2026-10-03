@@ -10,61 +10,75 @@ function getComputerChoice() {
         case 2:
             return "Scissors";
             break;
-    }
+    };
 };
-function getHumanChoice() {
-    let answer = prompt("Choose Rock-Paper-Scissors", "");
-    return (answer.charAt(0).toUpperCase() + answer.slice(1).toLowerCase());
-};
-function playGame() {
-    function playRound() {
-        const computer = getComputerChoice();
-        const human = getHumanChoice();
+// function getHumanChoice() {
+//     let answer = prompt("Choose Rock-Paper-Scissors", "");
+//     return (answer.charAt(0).toUpperCase() + answer.slice(1).toLowerCase());
+// };
+function playRound(human) {
+    computer = getComputerChoice();
+    let notif;
 
-        console.log("computer chose = " + computer);
-        console.log("human chose = " + human);
-        console.log("");
+    if (computer == "Rock" && human == "Paper" ||
+        computer == "Paper" && human == "Scissors" ||
+        computer == "Scissors" && human == "Rock") {
 
-        if (computer == "Rock" && human == "Paper" ||
-            computer == "Paper" && human == "Scissors" ||
-            computer == "Scissors" && human == "Rock") {
+        humanScore += 1;
+        notif = "Human Win, Computer Lose";
 
-            humanScore += 1;
+    } else if (human == "Rock" && computer == "Paper" ||
+        human == "Paper" && computer == "Scissors" ||
+        human == "Scissors" && computer == "Rock") {
 
-            console.log("Human Win, Computer Lose");
-            console.log("");
-            console.log("Human Score = " + humanScore);
-            console.log("Computer Score = " + computerScore);
-            console.log("");
+        computerScore += 1;
+        notif = "Computer Win, Human Lose";
 
-        } else if (human == "Rock" && computer == "Paper" ||
-            human == "Paper" && computer == "Scissors" ||
-            human == "Scissors" && computer == "Rock") {
-
-            computerScore += 1;
-            console.log("Computer Win, Human Lose");
-            console.log("");
-            console.log("Human Score = " + humanScore);
-            console.log("Computer Score = " + computerScore);
-            console.log("");
-
-        } else if (computer == human) {
-
-            console.log("it's DRAW!");
-            console.log("");
-            console.log("Human Score = " + humanScore);
-            console.log("Computer Score = " + computerScore);
-            console.log("");
-        };
+    } else if (computer == human) {
+        notif = "it's DRAW!";
     };
 
-    let humanScore = 0;
-    let computerScore = 0;
-
-    playRound();
-    playRound();
-    playRound();
-    playRound();
-    playRound();
-
+    result = 
+    `Computer Chose = ${computer}
+    Human Chose = ${human}
+    \n${notif}
+    \nComputer Score = ${computerScore}
+    Human Score = ${humanScore}`;
 };
+
+let humanScore = 0;
+let computerScore = 0;
+let computer;
+let result;
+
+const selection = document.querySelector(".playerSelection");
+const divResult = document.querySelector(".result");
+const para = document.createElement("p");
+const paraResult = document.createElement("p");
+para.setAttribute('style', 'white-space: pre-line;');
+
+selection.addEventListener("click", (event) => {
+    paraResult.textContent = "";
+    divResult.appendChild(paraResult);
+
+    let target = event.target;
+    switch (target.id) {
+        case 'rock':
+            playRound("Rock");
+            break;
+        case 'paper':
+            playRound("Paper");
+            break;
+        case 'scissors':
+            playRound("Scissors");
+            break;
+    };
+    para.textContent = result;
+    divResult.appendChild(para);
+
+    if (humanScore == 5 && humanScore > computerScore) {
+        paraResult.textContent = "Congratulation! Human Win, Computer Lose!";
+    } else if (computerScore == 5 && computerScore > humanScore) {
+        paraResult.textContent = "Too Bad! Computer Win, You Lose!";
+    };
+});
